@@ -18,7 +18,7 @@ Columbus State Bank – Capstone Project Repository
 ├── Data Assets
 │   ├── TX_auction_barn_cattle_data_final.xlsx
 │   ├── raw_barns_data.xlsx
-│   └── nda_data.zip (encrypted)
+│   └── nda_data.7z (encrypted)
 │
 ├── Analytical Work
 │   └── TX_Livestock_EDA.ipynb
@@ -70,7 +70,7 @@ Columbus State Bank – Capstone Project Repository
 * **raw_barns_data.xlsx**
   Initial raw dataset before preprocessing.
 
-* **nda_data.zip**
+* **nda_data.7z**
   Contains sensitive data shared under NDA.
   🔒 Password protected – access restricted.
 
