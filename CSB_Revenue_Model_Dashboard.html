@@ -1,0 +1,965 @@
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+<!--
+*
+	{box-sizing:border-box;
+	margin:0;
+	padding:0}
+body
+	{background:#0a0e1a;
+	color:#e8e6e0;
+	font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+	min-height:100vh}
+.nav
+	{background:#0f1628;
+	border-bottom:1px solid rgba(255,255,255,.08);
+	padding:0 2rem;
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	height:56px;
+	position:sticky;
+	top:0;
+	z-index:100}
+.nav-brand
+	{display:flex;
+	align-items:center}
+.nav-logo
+	{width:32px;
+	height:32px;
+	background:#1F3864;
+	border-radius:6px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	font-size:12px;
+	font-weight:700;
+	color:#A8C4E0;
+	letter-spacing:.5px}
+.nav-title
+	{font-size:14px;
+	font-weight:600;
+	color:#fff}
+.nav-sub
+	{font-size:11px;
+	color:rgba(255,255,255,.5);
+	margin-top:1px}
+.nav-badge
+	{font-size:10px;
+	padding:3px 10px;
+	border-radius:20px;
+	background:rgba(99,163,255,.15);
+	color:#63a3ff;
+	border:1px solid rgba(99,163,255,.25)}
+.hero
+	{background:#0f1628;
+	border-bottom:1px solid rgba(255,255,255,.08);
+	padding:2rem}
+.hero-inner
+	{max-width:1100px;
+	margin:0 auto}
+.hero-top
+	{display:flex;
+	justify-content:space-between;
+	align-items:flex-start;
+	margin-bottom:1.5rem;
+	flex-wrap:wrap}
+.hero-left .eyebrow
+	{font-size:10px;
+	letter-spacing:.12em;
+	text-transform:uppercase;
+	color:rgba(255,255,255,.8);
+	margin-bottom:6px}
+.hero-left h1
+	{font-size:28px;
+	font-weight:600;
+	color:#fff;
+	line-height:1.2;
+	margin-bottom:4px}
+.hero-left .sub
+	{font-size:13px;
+	color:rgba(255,255,255,.75)}
+.hero-kpis
+	{display:grid}
+.hkpi
+	{background:rgba(255,255,255,.05);
+	border:1px solid rgba(255,255,255,.08);
+	border-radius:10px;
+	padding:.875rem 1rem}
+.hkpi-lbl
+	{font-size:10px;
+	letter-spacing:.08em;
+	text-transform:uppercase;
+	color:rgba(255,255,255,.8);
+	margin-bottom:6px}
+.hkpi-val
+	{font-size:22px;
+	font-weight:600;
+	color:#fff}
+.hkpi-sub
+	{font-size:11px;
+	color:rgba(255,255,255,.7);
+	margin-top:3px}
+.scenario-toggle
+	{max-width:1100px;
+	margin:0 auto;
+	padding:1rem 2rem;
+	display:flex;
+	align-items:center;
+	background:#0f1628;
+	border-bottom:1px solid rgba(255,255,255,.08)}
+.toggle-label
+	{font-size:12px;
+	color:rgba(255,255,255,.7);
+	font-weight:500}
+.toggle-btn
+	{padding:6px 18px;
+	border-radius:20px;
+	font-size:12px;
+	font-weight:600;
+	border:1px solid rgba(255,255,255,.15);
+	background:transparent;
+	color:rgba(255,255,255,.5);
+	letter-spacing:.04em}
+.toggle-btn.active-full
+	{background:rgba(99,163,255,.2);
+	border-color:#63a3ff;
+	color:#63a3ff}
+.toggle-btn.active-yr1
+	{background:rgba(52,211,153,.2);
+	border-color:#34d399;
+	color:#34d399}
+.toggle-desc
+	{font-size:11px;
+	color:rgba(255,255,255,.5);
+	margin-left:8px}
+.controls
+	{background:#0f1628;
+	border-bottom:1px solid rgba(255,255,255,.08);
+	padding:1.25rem 2rem}
+.controls-inner
+	{max-width:1100px;
+	margin:0 auto}
+.ctrl-section-label
+	{font-size:10px;
+	letter-spacing:.1em;
+	text-transform:uppercase;
+	color:rgba(255,255,255,.6);
+	margin-bottom:.75rem;
+	margin-top:1rem;
+	font-weight:600}
+.ctrl-grid
+	{display:grid}
+.ctrl-grid-2
+	{display:grid}
+.ctrl
+	{background:rgba(255,255,255,.04);
+	border:1px solid rgba(255,255,255,.07);
+	border-radius:10px;
+	padding:.875rem 1rem}
+.ctrl-top
+	{display:flex;
+	justify-content:space-between;
+	align-items:baseline;
+	margin-bottom:8px}
+.ctrl-name
+	{font-size:10px;
+	letter-spacing:.08em;
+	text-transform:uppercase;
+	color:rgba(255,255,255,.6)}
+.ctrl-val
+	{font-size:15px;
+	font-weight:600;
+	color:#f0a03c}
+input[type=range]
+	{width:100%;
+	height:4px}
+.ctrl-desc
+	{font-size:11px;
+	color:rgba(255,255,255,.65);
+	margin-top:6px;
+	line-height:1.55}
+.ctrl-formula
+	{font-size:10px;
+	color:rgba(240,160,60,.9);
+	margin-top:5px;
+	font-style:italic;
+	line-height:1.5}
+.mix-note
+	{font-size:10px;
+	color:rgba(99,163,255,.8);
+	margin-top:4px;
+	font-style:italic}
+.credit-note
+	{font-size:10px;
+	color:rgba(251,191,36,.8);
+	margin-top:6px;
+	background:rgba(251,191,36,.06);
+	border:1px solid rgba(251,191,36,.15);
+	border-radius:6px;
+	padding:5px 8px;
+	line-height:1.5}
+.tabs
+	{max-width:1100px;
+	margin:0 auto;
+	padding:1.5rem 2rem 0}
+.tab-row
+	{display:flex;
+	margin-bottom:1.5rem;
+	border-bottom:1px solid rgba(255,255,255,.08)}
+.tab
+	{padding:8px 18px;
+	font-size:13px;
+	color:rgba(255,255,255,.5);
+	border-bottom:2px solid transparent;
+	background:none;
+	border-top:none;
+	border-left:none;
+	border-right:none}
+.tab.active
+	{color:#fff;
+	border-bottom-color:#f0a03c}
+.main
+	{max-width:1100px;
+	margin:0 auto;
+	padding:0 2rem 3rem}
+.panel
+	{display:none}
+.panel.active
+	{display:block}
+.sec-lbl
+	{font-size:10px;
+	letter-spacing:.1em;
+	text-transform:uppercase;
+	color:rgba(255,255,255,.5);
+	margin-bottom:.75rem}
+.divider
+	{border:none;
+	border-top:1px solid rgba(255,255,255,.07);
+	margin:1.5rem 0}
+.live-note
+	{background:rgba(52,211,153,.06);
+	border:1px solid rgba(52,211,153,.2);
+	border-radius:8px;
+	padding:.6rem 1rem;
+	font-size:11px;
+	color:rgba(52,211,153,.9);
+	margin-bottom:1rem}
+.barn-header
+	{display:flex;
+	align-items:center;
+	margin-bottom:1.25rem}
+.barn-track
+	{padding:3px 10px;
+	border-radius:20px;
+	font-size:10px;
+	font-weight:600;
+	letter-spacing:.06em}
+.track-a
+	{background:rgba(29,158,117,.2);
+	color:#34d399;
+	border:1px solid rgba(29,158,117,.3)}
+.track-b
+	{background:rgba(127,119,221,.2);
+	color:#a78bfa;
+	border:1px solid rgba(127,119,221,.3)}
+.barn-name
+	{font-size:18px;
+	font-weight:600;
+	color:#fff}
+.barn-meta
+	{font-size:11px;
+	color:rgba(255,255,255,.5);
+	margin-top:2px}
+.metrics-4
+	{display:grid;
+	margin-bottom:1.25rem}
+.metric
+	{background:rgba(255,255,255,.04);
+	border:1px solid rgba(255,255,255,.07);
+	border-radius:10px;
+	padding:.875rem 1rem}
+.metric-lbl
+	{font-size:10px;
+	color:rgba(255,255,255,.6);
+	text-transform:uppercase;
+	letter-spacing:.06em;
+	margin-bottom:5px}
+.metric-val
+	{font-size:18px;
+	font-weight:600;
+	color:#fff}
+.metric-sub
+	{font-size:10px;
+	color:rgba(255,255,255,.5);
+	margin-top:3px}
+.lever-panel
+	{background:rgba(255,255,255,.03);
+	border:1px solid rgba(255,255,255,.07);
+	border-radius:12px;
+	padding:1.25rem;
+	margin-bottom:1.25rem}
+.lever-title
+	{font-size:11px;
+	color:rgba(255,255,255,.6);
+	text-transform:uppercase;
+	letter-spacing:.08em;
+	margin-bottom:1rem}
+.lever-row
+	{display:grid;
+	align-items:center;
+	margin-bottom:10px}
+.lever-lbl
+	{font-size:12px;
+	color:rgba(255,255,255,.65)}
+.lever-track
+	{height:8px;
+	background:rgba(255,255,255,.08);
+	border-radius:4px;
+	overflow:hidden}
+.lever-fill
+	{height:100%;
+	border-radius:4px}
+.lever-pct
+	{font-size:12px;
+	font-weight:600;
+	color:rgba(255,255,255,.8);
+	text-align:right}
+.lever-amt
+	{font-size:12px;
+	font-weight:600;
+	text-align:right}
+.formula-box
+	{background:rgba(240,160,60,.06);
+	border:1px solid rgba(240,160,60,.15);
+	border-radius:8px;
+	padding:.75rem 1rem;
+	margin-top:.75rem;
+	font-size:11px;
+	color:rgba(255,255,255,.75);
+	line-height:1.9}
+.formula-box strong
+	{color:#f0a03c}
+.credit-zero-note
+	{background:rgba(251,191,36,.08);
+	border:1px solid rgba(251,191,36,.2);
+	border-radius:8px;
+	padding:.75rem 1rem;
+	margin-top:.75rem;
+	font-size:11px;
+	color:rgba(251,191,36,.9);
+	line-height:1.6}
+.upside-bar
+	{display:flex;
+	align-items:center;
+	justify-content:space-between;
+	background:rgba(99,163,255,.06);
+	border:1px solid rgba(99,163,255,.2);
+	border-radius:10px;
+	padding:1rem 1.25rem;
+	margin-bottom:1.25rem;
+	flex-wrap:wrap}
+.upside-item .lbl
+	{font-size:10px;
+	color:rgba(99,163,255,.7);
+	text-transform:uppercase;
+	letter-spacing:.06em;
+	margin-bottom:4px}
+.upside-item .val
+	{font-size:20px;
+	font-weight:600;
+	color:#63a3ff}
+.upside-arrow
+	{font-size:20px;
+	color:rgba(255,255,255,.3)}
+.risk-bar
+	{display:flex;
+	align-items:flex-start;
+	justify-content:space-between;
+	background:rgba(240,160,60,.06);
+	border:1px solid rgba(240,160,60,.2);
+	border-radius:10px;
+	padding:1rem 1.25rem;
+	flex-wrap:wrap;
+	margin-bottom:1.25rem}
+.risk-item .lbl
+	{font-size:10px;
+	color:rgba(240,160,60,.7);
+	text-transform:uppercase;
+	letter-spacing:.06em;
+	margin-bottom:4px}
+.risk-item .val
+	{font-size:16px;
+	font-weight:600;
+	color:#f0a03c}
+.risk-item .sub
+	{font-size:10px;
+	color:rgba(240,160,60,.5);
+	margin-top:2px}
+.cluster-grid
+	{display:grid;
+	margin-bottom:1.5rem}
+.cl-card
+	{background:rgba(255,255,255,.03);
+	border:1px solid rgba(255,255,255,.07);
+	border-radius:12px;
+	padding:1.125rem;
+	overflow:hidden}
+.cl-card.selected
+	{border-color:#f0a03c}
+.cl-accent
+	{top:0;
+	left:0;
+	width:4px;
+	height:100%;
+	border-radius:12px 0 0 12px}
+.cl-header
+	{display:flex;
+	align-items:flex-start;
+	justify-content:space-between;
+	margin-bottom:.5rem}
+.cl-name
+	{font-size:13px;
+	font-weight:600;
+	color:#fff}
+.cl-badge
+	{font-size:9px;
+	padding:2px 7px;
+	border-radius:20px;
+	white-space:nowrap;
+	flex-shrink:0}
+.cl-meta
+	{font-size:10px;
+	color:rgba(255,255,255,.5);
+	margin-bottom:.875rem}
+.cl-rev
+	{font-size:22px;
+	font-weight:600}
+.cl-sub
+	{font-size:10px;
+	color:rgba(255,255,255,.45);
+	margin-top:2px}
+.cl-bar
+	{display:flex;
+	height:4px;
+	border-radius:2px;
+	overflow:hidden;
+	margin-top:.75rem}
+.cl-seg
+	{height:100%;
+	border-radius:1px}
+.caution-badge
+	{display:inline-block;
+	background:rgba(251,191,36,.15);
+	color:#fcd34d;
+	border:1px solid rgba(251,191,36,.3);
+	border-radius:20px;
+	font-size:9px;
+	padding:2px 8px;
+	margin-top:4px}
+.sc-grid
+	{display:grid;
+	margin-bottom:1.5rem}
+.sc
+	{background:rgba(255,255,255,.03);
+	border:1px solid rgba(255,255,255,.07);
+	border-radius:12px;
+	padding:1rem}
+.sc.hl
+	{border-color:rgba(240,160,60,.45);
+	background:rgba(240,160,60,.06)}
+.sc-badge
+	{display:inline-block;
+	font-size:9px;
+	font-weight:600;
+	padding:2px 8px;
+	border-radius:20px;
+	margin-bottom:6px;
+	letter-spacing:.06em}
+.sc-pct
+	{font-size:10px;
+	color:rgba(255,255,255,.5);
+	margin-bottom:4px}
+.sc-total
+	{font-size:22px;
+	font-weight:600;
+	margin-bottom:2px}
+.sc-per
+	{font-size:10px;
+	color:rgba(255,255,255,.5);
+	margin-bottom:10px}
+.sc-divider
+	{height:1px;
+	background:rgba(255,255,255,.07);
+	margin-bottom:8px}
+.sc-line
+	{display:flex;
+	justify-content:space-between;
+	font-size:10px;
+	color:rgba(255,255,255,.5);
+	padding:2px 0}
+.sc-line span:last-child
+	{font-weight:600;
+	color:rgba(255,255,255,.8)}
+.sc-bar
+	{display:flex;
+	height:4px;
+	border-radius:2px;
+	overflow:hidden;
+	margin-top:8px}
+.barn-table
+	{width:100%;
+	border-collapse:collapse;
+	font-size:12px;
+	margin-bottom:1rem}
+.barn-table th
+	{text-align:left;
+	padding:8px 12px;
+	background:rgba(255,255,255,.05);
+	color:rgba(255,255,255,.6);
+	font-weight:500;
+	font-size:10px;
+	letter-spacing:.06em;
+	text-transform:uppercase;
+	border-bottom:1px solid rgba(255,255,255,.07)}
+.barn-table td
+	{padding:10px 12px;
+	border-bottom:1px solid rgba(255,255,255,.04);
+	color:rgba(255,255,255,.8);
+	vertical-align:middle}
+.barn-table tr:last-child td
+	{border-bottom:none}
+.barn-table tr:hover td
+	{background:rgba(255,255,255,.03)}
+.tbl-track
+	{display:inline-block;
+	font-size:9px;
+	padding:1px 6px;
+	border-radius:10px}
+.table-note
+	{background:rgba(99,163,255,.06);
+	border:1px solid rgba(99,163,255,.15);
+	border-radius:8px;
+	padding:.75rem 1rem;
+	font-size:11px;
+	color:rgba(255,255,255,.75);
+	line-height:1.7;
+	margin-bottom:1rem}
+.footer
+	{background:#0f1628;
+	border-top:1px solid rgba(255,255,255,.06);
+	padding:1.25rem 2rem;
+	text-align:center}
+.footer p
+	{font-size:11px;
+	color:rgba(255,255,255,.35);
+	line-height:1.8}
+.text-pay
+	{color:#63a3ff}
+.text-flt
+	{color:#34d399}
+.text-crd
+	{color:#fbbf24}
+.text-muted
+	{color:rgba(255,255,255,.4)}
+.source-note
+	{font-size:10px;
+	color:rgba(255,255,255,.35);
+	font-style:italic;
+	margin-top:.75rem;
+	line-height:1.6}
+-->
+</style>
+</head>
+<body>
+<div class="nav-brand">
+<div class="nav-logo">CSB</div>
+<div>
+<div class="nav-title">Livestock Platform — Revenue Model</div>
+<div class="nav-sub">Columbus State Bank · Stage 4 · Group 6 Capstone</div>
+</div>
+</div>
+<span class="nav-badge">Final · April 2026</span>
+<div style="width:100%; height:220px; overflow:hidden; background:#0a0e1a"><img blockedImageSrc="https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=1400&amp;q=80" alt="Texas livestock auction" style="width:100%; height:100%; object-fit:cover; object-position:center 40%; opacity:0.45; display:block">
+<div style=""></div>
+<div style="display:flex; flex-direction:column; justify-content:center; padding:0 2rem">
+<div style="max-width:1100px; margin:0 auto; width:100%">
+<div style="font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:rgba(240,160,60,.9); margin-bottom:10px; font-weight:600">
+Columbus State Bank · Digital Livestock Settlement Platform</div>
+<div style="font-size:32px; font-weight:700; color:#ffffff; line-height:1.2; margin-bottom:8px">
+Texas Livestock Auction<br>
+Revenue Model</div>
+</div>
+</div>
+</div>
+<div class="hero">
+<div class="hero-inner">
+<div class="hero-top">
+<div class="hero-left">
+<div class="eyebrow" id="hero-eyebrow">Base case · 12 barns · 15% SAM penetration</div>
+<h1 id="hero-rev">$624K</h1>
+<div class="sub" id="hero-sub">Annual revenue at target digital adoption — full potential view</div>
+</div>
+<div class="hero-kpis">
+<div class="hkpi">
+<div class="hkpi-lbl">Lexington potential today</div>
+<div class="hkpi-val" id="h-today">$31K</div>
+<div class="hkpi-sub">4.7% adoption · if platform existed</div>
+</div>
+<div class="hkpi">
+<div class="hkpi-lbl">Lexington at target</div>
+<div class="hkpi-val" id="h-target">$75K</div>
+<div class="hkpi-sub">per year · platform unlocks this</div>
+</div>
+<div class="hkpi">
+<div class="hkpi-lbl">Upside per barn</div>
+<div class="hkpi-val" id="h-upside">+$44K</div>
+<div class="hkpi-sub">same barn, higher adoption</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="scenario-toggle"><span class="toggle-label">View mode:</span><button class="toggle-btn active-full" id="btn-full">
+Full Potential</button><button class="toggle-btn" id="btn-yr1">Year 1 Realistic</button>
+<span class="toggle-desc" id="toggle-desc">All three levers at target adoption — theoretical ceiling if platform is fully live</span>
+</div>
+<div class="controls">
+<div class="controls-inner">
+<div class="ctrl-section-label">Payment rails assumptions</div>
+<div class="ctrl-grid">
+<div class="ctrl">
+<div class="ctrl-top"><span class="ctrl-name">Target digital adoption</span> <span class="ctrl-val" id="v-adopt">
+30%</span> </div>
+<input type="range" value="30" id="sl-adopt">
+<div class="ctrl-desc">% of settlement volume shifting to digital rails. 4.7% = today without platform. 30% = aspirational target.</div>
+</div>
+<div class="ctrl">
+<div class="ctrl-top"><span class="ctrl-name">ACH fee rate</span> <span class="ctrl-val" id="v-ach">
+0.10%</span> </div>
+<input type="range" value="10" id="sl-ach">
+<div class="ctrl-desc">Fee per dollar settled via ACH. Industry benchmark: 10bps.</div>
+<div class="mix-note">Assumed mix: 70% ACH / 30% card — adjust both rates to CSB's actual agreements</div>
+<div class="ctrl-formula" id="blended-readout">Current blended fee rate: 0.17% (70% × 0.10% ACH + 30% × 0.50% card)</div>
+</div>
+<div class="ctrl">
+<div class="ctrl-top"><span class="ctrl-name">Card fee rate</span> <span class="ctrl-val" id="v-card">
+0.50%</span> </div>
+<input type="range" value="50" id="sl-card">
+<div class="ctrl-desc">Fee per dollar settled via card. Industry benchmark: 50bps.</div>
+</div>
+</div>
+<div class="ctrl-section-label">Float assumptions</div>
+<div class="ctrl-grid-2">
+<div class="ctrl">
+<div class="ctrl-top"><span class="ctrl-name">Settlement float window</span> <span class="ctrl-val" id="v-float">
+2.5 days</span> </div>
+<input type="range" value="25" id="sl-float">
+<div class="ctrl-desc">Days funds sit in custodial account before payout. 2.5 days confirmed by Chase Anderson.</div>
+</div>
+<div class="ctrl">
+<div class="ctrl-top"><span class="ctrl-name">Net interest margin (NIM)</span> <span class="ctrl-val" id="v-nim">
+2.5%</span> </div>
+<input type="range" value="25" id="sl-nim">
+<div class="ctrl-desc">CSB's net margin on custodial float balance. Adjust to actual deposit rate.</div>
+</div>
+</div>
+<div class="ctrl-section-label">Credit assumptions — per Chase Anderson input</div>
+<div class="ctrl-grid-2">
+<div class="ctrl">
+<div class="ctrl-top"><span class="ctrl-name">Outstanding balance rate</span> <span class="ctrl-val" id="v-cred-bal">
+15%</span> </div>
+<input type="range" value="15" id="sl-cred-bal">
+<div class="ctrl-desc">Avg % of annual sale volume outstanding as credit at any point in the year. Default 15% per CSB input.</div>
+<div class="ctrl-formula" id="cred-formula">Formula: Vol × 15% × 7% = annualized credit income</div>
+<div class="credit-note" id="credit-note-main">Credit product does not currently exist at any barn. In Year 1 Realistic mode this lever is set to zero. Full Potential mode shows ceiling if product were fully live.</div>
+</div>
+<div class="ctrl">
+<div class="ctrl-top"><span class="ctrl-name">Loan interest rate</span> <span class="ctrl-val" id="v-cred-rate">
+7.0%</span> </div>
+<input type="range" value="7" id="sl-cred-rate">
+<div class="ctrl-desc">Annual interest rate on outstanding buyer credit. Default 7% per CSB input. Adjustable.</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tabs">
+<div class="tab-row"><button class="tab active">Lexington Livestock</button><button class="tab">
+USDA cluster estimates</button><button class="tab">Portfolio view</button> </div>
+</div>
+<div class="main">
+<div id="panel-lexington" class="panel active">
+<div class="barn-header"><span class="barn-track track-a">Track A · Real DDA</span>
+<div>
+<div class="barn-name">Lexington Livestock</div>
+<div class="barn-meta">CSB custodial account · Jan–Dec 2025 · 8,403 transactions · verified real data</div>
+</div>
+</div>
+<div class="metrics-4">
+<div class="metric">
+<div class="metric-lbl">Annual settlement vol</div>
+<div class="metric-val">$57.4M</div>
+<div class="metric-sub">real DDA confirmed</div>
+</div>
+<div class="metric">
+<div class="metric-lbl">Checks per year</div>
+<div class="metric-val">7,904</div>
+<div class="metric-sub">manual settlement today</div>
+</div>
+<div class="metric">
+<div class="metric-lbl">Digital adoption today</div>
+<div class="metric-val">4.7%</div>
+<div class="metric-sub">baseline without platform</div>
+</div>
+<div class="metric">
+<div class="metric-lbl">Float window</div>
+<div class="metric-val">2.5 days</div>
+<div class="metric-sub">Chase Anderson confirmed</div>
+</div>
+</div>
+<div class="lever-panel">
+<div class="lever-title">Revenue levers — at target adoption</div>
+<div class="lever-row"><span class="lever-lbl">Payment rails</span>
+<div class="lever-track">
+<div class="lever-fill" id="lex-pay-bar" style="background:#63a3ff"></div>
+</div>
+<span class="lever-pct" id="lex-pay-pct">69%</span> <span class="lever-amt text-pay" id="lex-pay-amt">
+$51,670</span> </div>
+<div class="lever-row"><span class="lever-lbl">Float income</span>
+<div class="lever-track">
+<div class="lever-fill" id="lex-flt-bar" style="background:#34d399"></div>
+</div>
+<span class="lever-pct" id="lex-flt-pct">13%</span> <span class="lever-amt text-flt" id="lex-flt-amt">
+$9,831</span> </div>
+<div class="lever-row"><span class="lever-lbl">Embedded credit</span>
+<div class="lever-track">
+<div class="lever-fill" id="lex-crd-bar" style="background:#fbbf24"></div>
+</div>
+<span class="lever-pct" id="lex-crd-pct">18%</span> <span class="lever-amt text-crd" id="lex-crd-amt">
+$602,700</span> </div>
+<div class="formula-box" id="lex-formula-box"><strong>Payment rails:</strong> $57.4M × adoption% × blended fee =
+<span id="f-pay">—</span> (annualized)<br>
+<strong>Float income:</strong> $57.4M × (float days ÷ 365) × NIM = <span id="f-flt">
+—</span> (annualized)<br>
+<strong>Credit income:</strong> $57.4M × outstanding% × loan rate = <span id="f-crd">
+—</span> (annualized) — per CSB input </div>
+<div class="credit-zero-note" id="lex-yr1-note" style="display:none">Year 1 Realistic mode: credit lever set to $0 — product does not currently exist. Payment rails and float are the only active revenue streams in Year 1.</div>
+</div>
+<div class="upside-bar">
+<div class="upside-item">
+<div class="lbl">Potential at current adoption (4.7%)</div>
+<div class="val" id="lex-today">$31,138</div>
+</div>
+<div class="upside-arrow">→</div>
+<div class="upside-item">
+<div class="lbl">Platform drives to target</div>
+<div class="val" id="lex-delta">+$43,575</div>
+</div>
+<div class="upside-arrow">→</div>
+<div class="upside-item">
+<div class="lbl">Revenue at target adoption</div>
+<div class="val" id="lex-target">$74,713</div>
+</div>
+<div class="upside-item">
+<div class="lbl">Multiplier</div>
+<div class="val" id="lex-mult">2.4×</div>
+</div>
+</div>
+<div class="risk-bar">
+<div class="risk-item">
+<div class="lbl">Check reversal rate</div>
+<div class="val">0.66%</div>
+<div class="sub">52 reversals · $422K vol</div>
+</div>
+<div class="risk-item">
+<div class="lbl">NSF rate</div>
+<div class="val">0.04%</div>
+<div class="sub">3 NSF fees in 2025</div>
+</div>
+<div class="risk-item">
+<div class="lbl">Chargeback rate</div>
+<div class="val">0.08%</div>
+<div class="sub">6 chargebacks in 2025</div>
+</div>
+<div class="risk-item">
+<div class="lbl">Buyer default exposure</div>
+<div class="val">Real · confirmed</div>
+<div class="sub">barn pays sellers regardless</div>
+</div>
+</div>
+<p class="source-note">Source: CSB DDA transaction data · Lexington Livestock custodial account · Jan–Dec 2025 · sanitized. Float 2.5 days confirmed by Chase Anderson. Credit formula (15% outstanding × 7% rate) per CSB input — annualized ceiling figure. ACH
+ 10bps / card 50bps are industry benchmarks — adjust sliders to CSB's actual rates. Note: $31K represents theoretical potential if platform and fee structure were in place at current adoption. CSB's actual current earnings from these levers are near zero without
+ the platform. Credit updated per CSB input April 2026.</p>
+</div>
+<div id="panel-clusters" class="panel">
+<div class="live-note">All figures update in real time as you adjust the sliders above — adoption rate, fee rates, float window, NIM, and credit assumptions all flow through to these estimates.</div>
+<p class="sec-lbl">USDA cluster estimates — median per-barn · select a cluster for detail</p>
+<div class="cluster-grid">
+<div class="cl-card selected" id="cl-0">
+<div class="cl-accent" style="background:#63a3ff"></div>
+<div style="padding-left:12px">
+<div class="cl-header">
+<div class="cl-name">C1 — Premium South TX</div>
+<span class="cl-badge" style="background:rgba(99,163,255,.15); color:#93c5fd">7 barns</span></div>
+<div class="cl-meta">$470–540/cwt · South TX brush country · highest prices in state</div>
+<div class="cl-rev text-pay" id="cl-rev-0">—</div>
+<div class="cl-sub">median barn · at target adoption</div>
+<div class="cl-bar" id="cl-bar-0">
+<div class="cl-seg" style="width:69%; background:#63a3ff"></div>
+<div class="cl-seg" style="width:13%; background:#34d399"></div>
+<div class="cl-seg" style="width:18%; background:#fbbf24"></div>
+</div>
+</div>
+</div>
+<div class="cl-card" id="cl-1">
+<div class="cl-accent" style="background:#34d399"></div>
+<div style="padding-left:12px">
+<div class="cl-header">
+<div class="cl-name">C2 — Balanced Mid-Market</div>
+<span class="cl-badge" style="background:rgba(52,211,153,.15); color:#6ee7b7">15 barns</span></div>
+<div class="cl-meta">$370–413/cwt · South/Central TX · state benchmark · recommended pilot</div>
+<div class="cl-rev text-flt" id="cl-rev-1">—</div>
+<div class="cl-sub">median barn · at target adoption</div>
+<div class="cl-bar" id="cl-bar-1">
+<div class="cl-seg" style="width:69%; background:#63a3ff"></div>
+<div class="cl-seg" style="width:13%; background:#34d399"></div>
+<div class="cl-seg" style="width:18%; background:#fbbf24"></div>
+</div>
+</div>
+</div>
+<div class="cl-card" id="cl-2">
+<div class="cl-accent" style="background:#fbbf24"></div>
+<div style="padding-left:12px">
+<div class="cl-header">
+<div class="cl-name">C3 — Below-Avg Niche</div>
+</div>
+<div style="margin-bottom:.5rem"><span class="caution-badge">2 barns only — limited data, use with caution</span></div>
+<div class="cl-meta">$245–256/cwt · Emory + Gillespie · uneven data coverage</div>
+<div class="cl-rev text-crd" id="cl-rev-2">—</div>
+<div class="cl-sub">not recommended for planning decisions</div>
+<div class="cl-bar" id="cl-bar-2">
+<div class="cl-seg" style="width:69%; background:#63a3ff"></div>
+<div class="cl-seg" style="width:13%; background:#34d399"></div>
+<div class="cl-seg" style="width:18%; background:#fbbf24"></div>
+</div>
+</div>
+</div>
+<div class="cl-card" id="cl-3">
+<div class="cl-accent" style="background:#a78bfa"></div>
+<div style="padding-left:12px">
+<div class="cl-header">
+<div class="cl-name">C4 — East TX Piney Woods</div>
+<span class="cl-badge" style="background:rgba(167,139,250,.15); color:#c4b5fd">4 barns</span></div>
+<div class="cl-meta">$226–246/cwt · East TX · geographically coherent below-average</div>
+<div class="cl-rev" id="cl-rev-3" style="color:#a78bfa">—</div>
+<div class="cl-sub">median barn · at target adoption</div>
+<div class="cl-bar" id="cl-bar-3">
+<div class="cl-seg" style="width:69%; background:#63a3ff"></div>
+<div class="cl-seg" style="width:13%; background:#34d399"></div>
+<div class="cl-seg" style="width:18%; background:#fbbf24"></div>
+</div>
+</div>
+</div>
+</div>
+<div id="cl-detail">
+<div class="lever-panel">
+<div class="lever-title" id="cl-detail-name">C1 — Premium South TX · lever breakdown</div>
+<div class="lever-row"><span class="lever-lbl">Payment rails</span>
+<div class="lever-track">
+<div class="lever-fill" id="cl-pay-bar" style="background:#63a3ff"></div>
+</div>
+<span class="lever-pct" id="cl-pay-pct">69%</span><span class="lever-amt text-pay" id="cl-pay-amt">—</span></div>
+<div class="lever-row"><span class="lever-lbl">Float income</span>
+<div class="lever-track">
+<div class="lever-fill" id="cl-flt-bar" style="background:#34d399"></div>
+</div>
+<span class="lever-pct" id="cl-flt-pct">13%</span><span class="lever-amt text-flt" id="cl-flt-amt">—</span></div>
+<div class="lever-row"><span class="lever-lbl">Embedded credit</span>
+<div class="lever-track">
+<div class="lever-fill" id="cl-crd-bar" style="background:#fbbf24"></div>
+</div>
+<span class="lever-pct" id="cl-crd-pct">18%</span><span class="lever-amt text-crd" id="cl-crd-amt">—</span></div>
+</div>
+</div>
+<p class="source-note">Source: USDA AMS Livestock · Jan 2024–Mar 2026 · 26 qualifying barns. K-Means k=4 (R²=0.815), cross-validated with HAC, GMM, DBSCAN. Volume = avg head × 52 weeks × median price/head. Median per-barn estimates — not verified banking data.
+ Credit figures are directional only — no credit product currently exists at any barn.</p>
+</div>
+<div id="panel-portfolio" class="panel">
+<div class="table-note"><strong style="color:#93c5fd">How to read this tab:</strong> Lexington ($57.4M) is one real verified DDA barn. Cluster figures are USDA median per-barn estimates — not directly comparable to Lexington. Portfolio scenarios scale cluster
+ medians by barn count per SOM tier. This is not assuming every barn is Lexington-sized. Credit figures shown are annualized ceiling values — Year 1 Realistic mode sets credit to zero.</div>
+<p class="sec-lbl">SOM revenue scenarios — portfolio level</p>
+<div class="sc-grid">
+<div class="sc"><span class="sc-badge" style="background:rgba(255,255,255,.08); color:rgba(255,255,255,.6)">CONSERVATIVE</span>
+<div class="sc-pct">5% SAM · 4 barns · $160M vol</div>
+<div class="sc-total text-muted" id="sc-tot-0">$208K</div>
+<div class="sc-per" id="sc-per-0">$52K per barn / yr</div>
+<div class="sc-divider"></div>
+<div class="sc-line"><span>Payment rails</span><span id="sc-pay-0">$144K</span></div>
+<div class="sc-line"><span>Float income</span><span id="sc-flt-0">$27K</span></div>
+<div class="sc-line"><span>Embedded credit</span><span id="sc-crd-0">$37K</span></div>
+<div class="sc-bar" id="sc-bar-0">
+<div style="width:69%; background:#63a3ff; height:4px; border-radius:2px"></div>
+<div style="width:13%; background:#34d399; height:4px; border-radius:2px"></div>
+<div style="width:18%; background:#fbbf24; height:4px; border-radius:2px"></div>
+</div>
+</div>
+<div class="sc hl"><span class="sc-badge" style="background:rgba(240,160,60,.2); color:#f5c070">BASE CASE</span>
+<div class="sc-pct">15% SAM · 12 barns · $480M vol</div>
+<div class="sc-total" id="sc-tot-1" style="color:#f0a03c">$624K</div>
+<div class="sc-per" id="sc-per-1">$52K per barn / yr</div>
+<div class="sc-divider"></div>
+<div class="sc-line"><span>Payment rails</span><span id="sc-pay-1">$432K</span></div>
+<div class="sc-line"><span>Float income</span><span id="sc-flt-1">$79K</span></div>
+<div class="sc-line"><span>Embedded credit</span><span id="sc-crd-1">$113K</span></div>
+<div class="sc-bar" id="sc-bar-1">
+<div style="width:69%; background:#63a3ff; height:4px; border-radius:2px"></div>
+<div style="width:13%; background:#34d399; height:4px; border-radius:2px"></div>
+<div style="width:18%; background:#fbbf24; height:4px; border-radius:2px"></div>
+</div>
+</div>
+<div class="sc"><span class="sc-badge" style="background:rgba(52,211,153,.15); color:#6ee7b7">OPTIMISTIC</span>
+<div class="sc-pct">25% SAM · 20 barns · $800M vol</div>
+<div class="sc-total text-flt" id="sc-tot-2">$1.04M</div>
+<div class="sc-per" id="sc-per-2">$52K per barn / yr</div>
+<div class="sc-divider"></div>
+<div class="sc-line"><span>Payment rails</span><span id="sc-pay-2">$720K</span></div>
+<div class="sc-line"><span>Float income</span><span id="sc-flt-2">$132K</span></div>
+<div class="sc-line"><span>Embedded credit</span><span id="sc-crd-2">$189K</span></div>
+<div class="sc-bar" id="sc-bar-2">
+<div style="width:69%; background:#63a3ff; height:4px; border-radius:2px"></div>
+<div style="width:13%; background:#34d399; height:4px; border-radius:2px"></div>
+<div style="width:18%; background:#fbbf24; height:4px; border-radius:2px"></div>
+</div>
+</div>
+</div>
+<div class="divider"></div>
+<p class="sec-lbl">All barns — summary table</p>
+<table class="barn-table">
+<thead>
+<tr>
+<th>Barn / Cluster</th>
+<th>Data source</th>
+<th>Annual vol</th>
+<th>Payment rails</th>
+<th>Float income</th>
+<th>Credit (annualized)</th>
+<th>Total / yr</th>
+</tr>
+</thead>
+<tbody id="barn-table-body">
+</tbody>
+</table>
+<p class="source-note">Track A = real CSB DDA data (Lexington · verified). Track B = USDA AMS median estimates (directional only — not banking data). SOM scenarios use SAM midpoint $3.199B. Credit annualized per CSB input — no product currently exists. Year
+ 1 Realistic mode zeros credit. Note: C3 and C4 USDA volume estimates exceed Lexington real DDA volume — this reflects estimated public market size, not verified transactions. Lexington $57.4M is the only validated figure in this table.</p>
+</div>
+</div>
+<div class="footer">
+<p>Columbus State Bank · Livestock Auction Settlement Platform · Stage 4 Financial Analysis</p>
+<p>Group 6 Capstone · McCombs School of Business · April 2026 · Confidential — Internal Use Only</p>
+<p>Payment: ACH 10bps / card 50bps benchmarks (70/30 mix assumed) · Float: 2.5-day window confirmed Chase Anderson · Credit: vol × 15% outstanding × loan rate, annualized — per CSB input April 2026</p>
+</div>
+</body>
+</html>
