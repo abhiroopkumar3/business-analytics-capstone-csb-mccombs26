@@ -1,4 +1,4 @@
-# Columbus State Bank – Capstone Project Repository
+# Data-Driven Texas Livestock Markets – Columbus State Bank
 
 This repository contains all deliverables, data assets, and analytical work developed as part of the MS Business Analytics Capstone project at Texas McCombs School of Business, The University of Texas at Austin. The project evaluates the feasibility of a digital livestock auction settlement platform for Columbus State Bank, focusing on market sizing, financial viability, and operational impact.
 
